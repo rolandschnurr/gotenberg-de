@@ -3,8 +3,9 @@
 # als Coolify-Dienst betrieben (PDF aus HTML über Chromium, PDF aus Excel über LibreOffice).
 #
 # Die Gotenberg-Version ist fest eingetragen, damit ein Neubau nicht unbemerkt wechselt.
-# 8.39.0 (27.10.2026): Chromium 156, Brotli-Fix CVE-2026-111497.
-FROM gotenberg/gotenberg:8.39.0
+# 8.40.0 (05.11.2026): letztes Release von Gotenberg 8, Chromium 156.0.8078.79, LibreOffice 26.8.2.
+# Gotenberg 9 ist ein Major-Sprung und noch nicht geprüft.
+FROM gotenberg/gotenberg:8.40.0
 
 USER root
 
