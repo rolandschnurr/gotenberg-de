@@ -16,6 +16,14 @@ RUN apt-get update && \
     locale-gen de_DE.UTF-8 && \
     update-locale LANG=de_DE.UTF-8 LC_ALL=de_DE.UTF-8
 
+# Chromium aus trixie-security nachziehen. Gotenberg 8 bekommt kein Release mehr, das
+# Basis-Image bleibt also bei Chromium 156.0.8078.79 stehen. Der Neubau bricht ab, wenn
+# Debian weniger als die Fassung liefert, die CVE-2026-125350 behebt.
+ARG CHROMIUM_MIN=156.0.8078.108
+RUN apt-get install -y --only-upgrade chromium chromium-common && \
+    dpkg --compare-versions "$(dpkg-query -W -f='${Version}' chromium)" ge "$CHROMIUM_MIN" && \
+    dpkg --compare-versions "$(dpkg-query -W -f='${Version}' chromium-common)" ge "$CHROMIUM_MIN"
+
 # Deutsche LibreOffice-Sprachpakete. LibreOffice kommt in Gotenberg 8.3x aus trixie-backports,
 # die Sprachpakete müssen aus derselben Quelle stammen, sonst passen die Versionen nicht zusammen.
 RUN apt-get install -y -t trixie-backports \
