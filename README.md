@@ -19,6 +19,8 @@
    docker push ghcr.io/rolandschnurr/gotenberg-de:latest
    ```
 
+   Kommt nur ein neues Chromium aus Debian und keine neue Gotenberg-Version, bleibt Schritt 1 weg: `CHROMIUM_MIN` im `Dockerfile` auf die Fassung mit dem Fix setzen und mit dem Tag `<version>-r<n>` bauen (Beispiel `8.40.0-r1`).
+
 3. Vorher prüfen: HTML-Bericht und Excel-Bericht mit altem und neuem Image wandeln und vergleichen.
 4. Der Coolify-Dienst zeigt fest auf eine Version. Image-Tag in Coolify umstellen (in der Coolify-DB stehen `service_applications.image` sowie `services.docker_compose_raw` und `services.docker_compose`), dann den Dienst über Coolify neu starten. Er bleibt so in den Netzen `coolify` und `ggo088o4o4owo0wcogsc00w0`.
 5. Danach aus dem my8data-Web-Container `/version`, eine HTML- und eine Excel-Wandlung mit Basic Auth prüfen.
@@ -30,3 +32,4 @@
 | 30.09.2025 | 8.23.0 | erste Version (Chromium 139, LibreOffice 25.2) |
 | 02.11.2026 | 8.39.0 | Sicherheitsupdate: 9 ausgenutzte Chromium-Lücken (CISA KEV), Brotli CVE-2026-111497 |
 | 08.11.2026 | 8.40.0 | Sicherheitsupdate Chromium 156.0.8078.79, LibreOffice 26.8.2. Letztes Release von Gotenberg 8. Geprüft: 2 HTML- und 8 Excel-Wandlungen alt gegen neu, Seitenzahl, Format und Text identisch |
+| 24.11.2026 | 8.40.0-r1 | Sicherheitsupdate Chromium 156.0.8078.108 aus trixie-security (CVE-2026-125350, CISA KEV). Gotenberg bleibt 8.40.0, LibreOffice 26.8.2 unverändert. Geprüft: 3 HTML- und 8 Excel-Wandlungen alt gegen neu, Seitenzahl, Format und Text identisch |
